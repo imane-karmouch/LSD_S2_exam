@@ -21,7 +21,7 @@ int                 calculate_subordinates(employee  *node)
     // You are giving a root of a tree, and you goal is to set numnber of 
     // subordinates of each node, and set the value to the array subordinates
     // the array indexing starting from 1.
-}
+}   
 
 employee            *create_employees_tree(int *arr, int employee_num);
 
@@ -53,7 +53,7 @@ employee            *find_employee(int employee_name, employee *node)
     employee *left, *right;
     left = find_employee(employee_name, node->left);
     right = find_employee(employee_name, node->right);
-    return left ? left : right;
+    return left != NULL ? left : right;
 }
 
 
@@ -70,17 +70,12 @@ employee            *create_employees_tree(int *arr, int employee_num)
     {
         curr = (employee*)malloc(sizeof(employee));
         curr->name = i;
-        root->left = root->right = NULL;
-        target = find_employee(i, root);
+        curr->left = curr->right = NULL;
+        target = find_employee(arr[i], root);
         if (target->right == NULL)
             target->right = curr;
         else
             target->left = curr;
     }
     return root;
-}
-
-void                test_program()
-{
-
 }
